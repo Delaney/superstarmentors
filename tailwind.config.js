@@ -1,8 +1,16 @@
 module.exports = {
-  purge: [],
+  purge: [
+    './resources/**/*.blade.php',
+    './resources/**/*.js',
+    './resources/**/*.vue',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        mentorBlue: '#51539f',
+      }
+    },
   },
   variants: {
     extend: {},
