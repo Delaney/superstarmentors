@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -19,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'email_verified',
         'password',
     ];
 
@@ -40,4 +42,35 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roll_api_key() {
+        do {
+            $token = base64_encode( hash('sha256',time()) . hash('sha256',getenv('APP_KEY')) . random_bytes(206) );
+            $this->api_token = $token;
+        } while( $this->where('api_token', $this->api_token)->exists() );
+        $this->api_token_expire_at = Carbon::now()->addDays(30);
+        $this->save();
+    }
+
+    public function login() {
+        $this->roll_api_key();
+
+        $token = ApiToken::where('user_id', $this->id)
+            ->first();
+
+        $date = Carbon::now()->addDays(30);
+
+        if ($token) {
+            $token->forget('user.api_token.%s', [$token->api_token]);
+            $token->api_token = $this->api_token;
+            $token->api_token_expire_at = $date;
+            $token->save();
+        } else {
+            $token = ApiToken::create([
+                'user_id' => $this->id,
+                'api_token' => $this->api_token,
+                'api_token_expire_at' => $date,
+            ]);
+        }
+    }
 }

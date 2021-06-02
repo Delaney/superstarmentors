@@ -6,7 +6,6 @@
 import VueRouter from 'vue-router';
 import App from './components/App';
 import Signup from './pages/mentor/Signup';
-import Mentor from './pages/mentor/Mentor';
 
 require('./bootstrap');
 
@@ -23,14 +22,13 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.use(VueRouter);
-// Vue.component('app', require('./components/App.vue').default);
+Vue.component('app', require('./components/App.vue').default);
 
 const router = new VueRouter({
-    mode: 'history',
+    // mode: 'history',
     routes: [
         { path: '/', component: App },
-        { path: '/mentor', component: Mentor },
-        { path: '/mentor/signup', component: Signup },
+        { path: '/mentor', component: Signup },
     ]
 });
 
@@ -42,5 +40,5 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
 });

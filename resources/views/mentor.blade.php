@@ -6,14 +6,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>SuperStar Mentors</title>
 
-	<link rel="stylesheet" href="{{ mix('css/app.css') }}"></link>
+	<link rel="stylesheet" href="{{ mix('css/mentor.css') }}"></link>
 
 </head>
 <body>
 	<div id="app">
-		<router-view></router-view>
+		<App>
+			<router-view></router-view>
+		</App>
 	</div>
 	
-	<script src="{{ mix('js/app.js') }}"></script>
+	<script src="{{ mix('js/mentor.js') }}"></script>
 </body>
 </html>

@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/{path?}', function () {
     return view('index');
-});
+})->where('path', '.*');
+
+Route::get('/mentor/{path?}', function () {
+    return view('mentor');
+})->where('path', '.*');
 
 Auth::routes();
 
