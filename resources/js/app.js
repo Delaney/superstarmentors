@@ -5,7 +5,8 @@
  */
 import VueRouter from 'vue-router';
 import App from './components/App';
-import Signup from './pages/mentor/Signup';
+import MentorSignup from './pages/mentor/Signup';
+import MentorLogin from './pages/mentor/Login';
 import Mentor from './pages/mentor/Mentor';
 
 require('./bootstrap');
@@ -30,7 +31,8 @@ const router = new VueRouter({
     routes: [
         { path: '/', component: App },
         { path: '/mentor', component: Mentor },
-        { path: '/mentor/signup', component: Signup },
+        { path: '/mentor/signup', component: MentorSignup },
+        { path: '/mentor/login', component: MentorLogin },
     ]
 });
 

@@ -61,7 +61,6 @@ class User extends Authenticatable
         $date = Carbon::now()->addDays(30);
 
         if ($token) {
-            $token->forget('user.api_token.%s', [$token->api_token]);
             $token->api_token = $this->api_token;
             $token->api_token_expire_at = $date;
             $token->save();
