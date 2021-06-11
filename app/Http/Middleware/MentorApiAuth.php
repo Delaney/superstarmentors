@@ -38,7 +38,7 @@ class MentorApiAuth
                 if($user) {
                     $mentor = Mentor::where('user_id', $user->id)->first();
                     if ($mentor) {
-                        $request->merge(['mentor' => $mentor]);
+                        $request->merge(['mentor' => $mentor, 'user' => $user]);
                     }
                     else {
                         return response()->json($error_response, 401);
