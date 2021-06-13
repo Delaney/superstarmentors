@@ -19,4 +19,9 @@ class Mentor extends Model
         'name',
         'category',
     ];
+
+    public function broadcasts()
+    {
+        return $this->hasMany(Broadcast::class);
+    }
 }

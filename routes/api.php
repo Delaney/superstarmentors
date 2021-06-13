@@ -22,7 +22,13 @@ Route::post('mentor/signup', 'Api\MentorController@signup');
 Route::post('mentor/login', 'Api\MentorController@login');
 
 Route::group(['middleware' => 'api.user'], function () {
+    Route::get('broadcasts', 'Api\BroadcastController@view');
+
     # Wallet
     Route::get('wallet', 'Api\WalletController@details');
     Route::post('wallet/deposit', 'Api\WalletController@deposit');
+});
+
+Route::group(['middleware' => 'api.mentor'], function () {
+    Route::post('broadcast/create', 'Api\BroadcastController@create');
 });
