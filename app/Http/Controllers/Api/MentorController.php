@@ -20,10 +20,12 @@ class MentorController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'email'     => 'email|required|unique:users',
-                'name'      => 'required',
-                'category'  => 'required',
-                'password'  => 'required|string|min:6',
+                'email'         => 'email|required|unique:users',
+                'first_name'    => 'required',
+                'last_name'     => 'required',
+                'stage_name'    => 'required',
+                'category'      => 'required',
+                'password'      => 'required|string|min:6',
             ]
         );
 
@@ -37,7 +39,8 @@ class MentorController extends Controller
         $password = Hash::make($request->input('password'));
 
         $user = User::create([
-            'name'          => $request->input('name'),
+            'first_name'    => $request->input('first_name'),
+            'last_name'     => $request->input('last_name'),
             'email'         => $request->input('email'),
             'password'      => $password,
             'account_type'  => 'mentor'
@@ -53,7 +56,7 @@ class MentorController extends Controller
         return response()->json([
             'success'   => true,
             'data'      => [
-                'name'          => $user->name,
+                'name'          => $request->input('stage_name'),
                 'email'         => $user->email,
                 'stage_name'    => $mentor->name,
                 'category'      => $mentor->category,
