@@ -56,7 +56,7 @@ class MentorController extends Controller
         return response()->json([
             'success'   => true,
             'data'      => [
-                'name'          => $request->input('stage_name'),
+                'name'          => $user->getFullName(),
                 'email'         => $user->email,
                 'stage_name'    => $mentor->name,
                 'category'      => $mentor->category,

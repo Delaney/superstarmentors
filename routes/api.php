@@ -21,6 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('mentor/signup', 'Api\MentorController@signup');
 Route::post('mentor/login', 'Api\MentorController@login');
 
+Route::post('user/signup', 'Api\UserController@signup');
+Route::post('user/login', 'Api\UserController@login');
+
 Route::group(['middleware' => 'api.user'], function () {
     Route::get('broadcasts', 'Api\BroadcastController@view');
 
