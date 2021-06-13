@@ -15,7 +15,8 @@ class Broadcast extends Model
         'category',
         'avatar',
         'description',
-        'broadcast_datetime'
+        'broadcast_datetime',
+        'price'
     ];
 
     protected $casts = [

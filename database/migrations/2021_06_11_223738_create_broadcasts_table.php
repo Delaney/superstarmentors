@@ -21,6 +21,7 @@ class CreateBroadcastsTable extends Migration
             $table->text('avatar')->nullable();
             $table->text('description')->nullable();
             $table->dateTime('broadcast_datetime');
+            $table->decimal('price', 10, 2)->default(0);
             $table->timestamps();
         });
     }

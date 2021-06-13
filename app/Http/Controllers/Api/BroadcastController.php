@@ -44,7 +44,8 @@ class BroadcastController extends Controller
 			[
 		        'name'                  => 'required',
 		        'category'	            => 'required',
-                'broadcast_datetime'    => 'required'
+                'broadcast_datetime'    => 'required',
+                'price'                 => 'required'
 		    ]
 		);
 
@@ -65,6 +66,7 @@ class BroadcastController extends Controller
         $broadcast->category = $request->input('category');
         $broadcast->avatar = $request->input('avatar');
         $broadcast->description = $request->input('description');
+        $broadcast->price = $request->input('price');
 
         $broadcast_datetime = Carbon::parse($request->input('broadcast_datetime'), $tz)->format('Y-m-d H:i:s');
 
