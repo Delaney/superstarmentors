@@ -20,6 +20,11 @@ class Mentor extends Model
         'category',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     public function broadcasts()
     {
         return $this->hasMany(Broadcast::class);

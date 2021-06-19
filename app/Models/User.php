@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
+use Overtrue\LaravelFollow\Followable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Followable;
 
     /**
      * The attributes that are mass assignable.
@@ -57,6 +58,11 @@ class User extends Authenticatable
         } while( $this->where('api_token', $this->api_token)->exists() );
         $this->api_token_expire_at = Carbon::now()->addDays(30);
         $this->save();
+    }
+
+    public function mentor() {
+        if ($this->account_type == 'user') return false;
+        return $this->hasOne(Mentor::class);
     }
 
     public function login() {

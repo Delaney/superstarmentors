@@ -15,8 +15,7 @@ use App\Models\{
 
 class MentorController extends Controller
 {
-    public function signup(Request $request)
-    {
+    public function signup(Request $request) {
         $validator = Validator::make(
             $request->all(),
             [
@@ -47,6 +46,7 @@ class MentorController extends Controller
         ]);
 
         $mentor = Mentor::create([
+            'name'      => $request->input('stage_name'),
             'user_id'   => $user->id,
             'category'  => $request->input('category')
         ]);
@@ -65,8 +65,7 @@ class MentorController extends Controller
         ]);
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request) {
         $validator = Validator::make(
             $request->all(),
             [
