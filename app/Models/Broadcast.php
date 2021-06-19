@@ -16,7 +16,8 @@ class Broadcast extends Model
         'avatar',
         'description',
         'broadcast_datetime',
-        'price'
+        'price',
+        'views'
     ];
 
     protected $casts = [
@@ -26,5 +27,13 @@ class Broadcast extends Model
     public function mentor()
     {
         return $this->hasOne(Mentor::class);
+    }
+
+    public function isSubscribed(User $user)
+    {
+        return Subscription::where('user_id', $user->id)
+            ->where('broadcast_id', $this->id)
+            ->where('cancelled', false)
+            ->exists();
     }
 }

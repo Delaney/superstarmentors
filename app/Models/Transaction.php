@@ -14,6 +14,7 @@ class Transaction extends Model
         'broadcast_id',
         'paystack_reference',
         'transaction_type',
+        'transaction_group',
         'payment_method',
         'payment_status',
         'notes',

@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->bigInteger('broadcast_id')->nullable();
             $table->string('paystack_reference')->nullable();
             $table->enum('transaction_type', ['credit', 'debit']);
+            $table->enum('transaction_group', ['wallet', 'broadcast']);
             $table->enum('payment_method', ['wallet', 'card', 'bank', 'ussd']);
             $table->string('payment_status')->default('pending');
             $table->text('notes')->nullable();

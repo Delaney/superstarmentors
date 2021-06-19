@@ -20,33 +20,32 @@ class Wallet extends Model
     ];
 
     public function charge($amount, $options) {
-        // if(isset($options->notes) && $options->notes)
-        //     $notes = $options->notes;
+        if(isset($options->notes) && $options->notes)
+            $notes = $options->notes;
 
-        // if($this->balance >= $amount) {
-        //     $this->balance -= $amount;
-        //     $this->save();
+        if($this->balance >= $amount) {
+            $this->balance -= $amount;
+            $this->save();
 
-        //     $data = [
-        //         'user_id'               => $this->user_id,
-        //         'amount'                => $amount,
-        //         'amount_sub'            => $amount,
-        //         'transaction_type'      => 'debit',
-        //         'payment_method'        => 'wallet',
-        //         'payment_status'        => 'completed',
-        //         'transaction_group'     => 'wallet',
-        //         'notes'                 => $notes
-        //     ];
+            $broadcast_id = isset($options->broadcast_id) ? $options->broadcast_id : NULL;
 
-        //     if(isset($options->order_id))
-        //         $data['order_id'] = $options->order_id;
+            $data = [
+                'user_id'               => $this->user_id,
+                'broadcast_id'          => $broadcast_id,
+                'amount'                => $amount,
+                'transaction_type'      => 'debit',
+                'payment_method'        => 'wallet',
+                'payment_status'        => 'completed',
+                'transaction_group'     => 'wallet',
+                'notes'                 => $notes
+            ];
 
-        //     $transaction = Transaction::create($data);
+            $transaction = Transaction::create($data);
 
-        //     return true;
-        // }
+            return true;
+        }
 
-        // return false;
+        return false;
     }
 
     public function deposit($amount, $options) {
@@ -70,13 +69,10 @@ class Wallet extends Model
 
         if($msg) {
             $notes = $msg;
-            if(isset($options->notes) && $options->notes)
-                $notes = $options->notes;
 
             $data = array_merge($data, [
                 'user_id'               => $this->user_id,
                 'amount'                => $amount,
-                'amount_sub'            => $amount,
                 'transaction_type'      => 'credit',
                 'payment_method'        => 'wallet',
                 'payment_status'        => 'completed',
