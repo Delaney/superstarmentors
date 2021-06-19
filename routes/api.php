@@ -25,7 +25,14 @@ Route::post('user/signup', 'Api\UserController@signup');
 Route::post('user/login', 'Api\UserController@login');
 
 Route::group(['middleware' => 'api.user'], function () {
+    Route::get('following', 'Api\FollowController@following');
+    Route::post('follow', 'Api\FollowController@follow');
+    Route::post('unfollow', 'Api\FollowController@unfollow');
+
     Route::get('broadcasts', 'Api\BroadcastController@view');
+    Route::get('broadcasts/user', 'Api\BroadcastController@view_subscribed');
+    Route::post('broadcasts/subscribe', 'Api\BroadcastController@subscribe');
+    Route::post('broadcasts/cancel', 'Api\BroadcastController@user_cancel');
 
     # Wallet
     Route::get('wallet', 'Api\WalletController@details');
