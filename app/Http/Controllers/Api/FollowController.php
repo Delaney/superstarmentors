@@ -20,6 +20,7 @@ class FollowController extends Controller
 
         return [
             'success'   => true,
+            'count'     => $following->count(),
             'data'      => $following
         ];
     }

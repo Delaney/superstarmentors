@@ -5,6 +5,7 @@
  */
 import VueRouter from 'vue-router';
 import App from './components/App';
+import Signup from './pages/Signup';
 import MentorSignup from './pages/mentor/Signup';
 import MentorLogin from './pages/mentor/Login';
 import Mentor from './pages/mentor/Mentor';
@@ -30,6 +31,9 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         { path: '/', component: App },
+        { path: '/signup', component: Signup },
+        // { path: '/login', component: Login },
+
         { path: '/mentor', component: Mentor },
         { path: '/mentor/signup', component: MentorSignup },
         { path: '/mentor/login', component: MentorLogin },

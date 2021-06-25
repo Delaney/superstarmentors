@@ -18,6 +18,7 @@ class CreateSubscriptionsTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('broadcast_id');
             $table->boolean('cancelled')->default(false);
+            $table->dateTime('cancelled_at')->nullable();
             $table->timestamps();
         });
     }

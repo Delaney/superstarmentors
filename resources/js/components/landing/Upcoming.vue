@@ -1,9 +1,9 @@
 <template>
 	<div class="min-h-screen px-12 py-16">
-		<div class="mb-10">
-			<span class="text-2xl">Today</span>/
-			<span class="text-2xl">This Week</span>/
-			<span class="text-2xl">Next Month</span>
+		<div class="mb-10 text-3xl">
+			<span>Today</span> /
+			<span>This Week</span> /
+			<span>Next Month</span>
 		</div>
 
 		<div v-for="single in upcoming" :key="single.id">
